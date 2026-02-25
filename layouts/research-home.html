@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+<h1 style="text-align:center;margin-bottom:40px;">研究方向</h1>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;">
+
+{{ range .Pages }}
+<div style="padding:25px;border:1px solid #ddd;border-radius:12px;transition:0.3s;">
+
+  <h2 style="margin-top:0;">
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </h2>
+
+  {{ if .Params.description }}
+  <p style="color:#555;">{{ .Params.description }}</p>
+  {{ end }}
+
+</div>
+{{ end }}
+
+</div>
+
+{{ end }}

@@ -1,0 +1,52 @@
+baseURL = "https://aiwellbore.com/"
+languageCode = "en-us"
+title = "AI Wellbore Research Group"
+theme = "PaperMod"
+
+[params]
+  author = "AI Wellbore Team"
+  defaultTheme = "light"
+  ShowReadingTime = true
+  ShowShareButtons = false
+
+[menu]
+
+[[menu.main]]
+  name = "导师团队"
+  url = "/members/"
+  weight = 1
+
+[[menu.main]]
+  name = "研究方向"
+  url = "/research/"
+  weight = 2
+
+[[menu.main]]
+  name = "在研项目"
+  url = "/projects/"
+  weight = 3
+
+[[menu.main]]
+  name = "研究成果"
+  url = "/publications/"
+  weight = 4
+
+[[menu.main]]
+  name = "经验分享"
+  url = "/experience/"
+  weight = 5
+
+[[menu.main]]
+  name = "教学资源"
+  url = "/teaching/"
+  weight = 6
+
+[[menu.main]]
+  name = "新闻动态"
+  url = "/news/"
+  weight = 7
+
+[[menu.main]]
+  name = "精彩活动"
+  url = "/activities/"
+  weight = 8
