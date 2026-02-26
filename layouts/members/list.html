@@ -8,7 +8,7 @@
   {{ range .Params.members }}
   <div class="team-card">
     <div class="team-photo">
-      <img src="{{ .photo | relURL }}" alt="{{ .name }}">
+      <img src="{{ .photo | absURL }}" alt="{{ .name }}">
     </div>
     <div class="team-body">
       <div class="team-name">{{ .name }}</div>

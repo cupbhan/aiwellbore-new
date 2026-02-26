@@ -3,7 +3,7 @@ date = '2026-02-25T11:51:20+08:00'
 draft = false
 title = "气井排采"
 description = "气井积液机理、排采制度优化与智能控制技术研究"
-image = "/images/research/gas-well.jpg"
+image = "images/research/gas-well.jpg"
 +++
 
 ## 技术问题

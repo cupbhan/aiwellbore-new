@@ -3,7 +3,7 @@ date = '2026-02-25T11:51:20+08:00'
 draft = false
 title = "智能化采油气"
 description = "基数据物理融合建模、智能诊断与生产优化技术研究"
-image = "/images/research/intelligent.png"
+image = "images/research/intelligent.png"
 +++
 
 ## 技术问题
