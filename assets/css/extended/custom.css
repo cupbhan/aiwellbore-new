@@ -267,9 +267,10 @@ body:has(.hide-page-header) .main > header.page-header { display: none !importan
    七、首页 Hero 区域
    ---------------------------------------------------------- */
 .hero-section {
+  /* 背景图由 extend_head.html 通过 --hero-bg 变量注入，支持子目录部署 */
   background:
     linear-gradient(rgba(240,246,255,0.80), rgba(235,244,255,0.80)),
-    url('/images/hero-lift.png') center/cover no-repeat;
+    var(--hero-bg-url, none) center/cover no-repeat;
   color: var(--c-heading);
   border-radius: var(--radius-l);
   padding: 48px 40px;

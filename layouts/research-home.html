@@ -15,7 +15,7 @@
 
   {{ if .Params.image }}
   <div class="rhc-img-wrap">
-    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="rhc-img">
+    <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="rhc-img">
   </div>
   {{ end }}
 

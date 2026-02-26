@@ -3,3 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Hero 背景图：通过 CSS 变量注入，relURL 确保子目录部署路径正确 -->
+<style>
+  :root { --hero-bg-url: url('{{ "/images/hero-lift.png" | relURL }}'); }
+</style>
