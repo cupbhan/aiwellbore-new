@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+<span class="hide-page-title"></span>
+
+<div class="members-page">
+<div class="team-grid">
+
+  {{ range .Params.members }}
+  <div class="team-card">
+    <div class="team-photo">
+      <img src="{{ .photo | relURL }}" alt="{{ .name }}">
+    </div>
+    <div class="team-body">
+      <div class="team-name">{{ .name }}</div>
+      <div class="team-title">{{ .title }}</div>
+      <div class="team-desc">{{ .desc }}</div>
+      <div class="team-actions">
+        <a class="team-btn" href="{{ .url }}" target="_blank" rel="noopener">详细介绍</a>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+</div>
+</div>
+
+{{ end }}
