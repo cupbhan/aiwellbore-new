@@ -1,52 +1,83 @@
 baseURL = "https://aiwellbore.com/"
 languageCode = "en-us"
-title = "AI Wellbore Research Group"
+title = "采油采气工艺技术研究团队"
 theme = "PaperMod"
 
 [params]
   author = "AI Wellbore Team"
   defaultTheme = "light"
-  ShowReadingTime = true
+  ShowReadingTime = false
   ShowShareButtons = false
+  disableThemeToggle = true
+  ShowPostNavLinks = false
+  ShowBreadCrumbs = false
 
+[params.label]
+text = "采油采气工艺技术研究团队"
+iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
+
+[params.footer]
+  hideCopyright = true
+  text = "© 2026 采油采气工艺技术研究团队 · 中国石油大学（北京）&nbsp;|&nbsp; <a href='https://beian.miit.gov.cn' target='_blank' rel='noopener'>京ICP备2022013874号-1</a>"
+
+[params.homeInfoParams]
+  Title = ""
+  Content = ""
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+      
 [menu]
+
+[[menu.main]]
+  name = "首页"
+  url = "/"
+  weight = 1
 
 [[menu.main]]
   name = "导师团队"
   url = "/members/"
-  weight = 1
+  weight = 2
 
 [[menu.main]]
   name = "研究方向"
   url = "/research/"
-  weight = 2
+  weight = 3
 
 [[menu.main]]
   name = "在研项目"
   url = "/projects/"
-  weight = 3
+  weight = 4
 
 [[menu.main]]
   name = "研究成果"
   url = "/publications/"
-  weight = 4
+  weight = 5
 
 [[menu.main]]
   name = "经验分享"
   url = "/experience/"
-  weight = 5
+  weight = 6
 
 [[menu.main]]
   name = "教学资源"
   url = "/teaching/"
-  weight = 6
+  weight = 7
 
 [[menu.main]]
-  name = "新闻动态"
+  name = "最新资讯"
   url = "/news/"
-  weight = 7
+  weight = 8
 
 [[menu.main]]
   name = "精彩活动"
   url = "/activities/"
-  weight = 8
+  weight = 9
+
+# 外部链接（靠右独立区域，在导航右端显示）
+[[menu.external]]
+  name = "中国石油大学（北京）"
+  url = "https://www.cup.edu.cn"
+  weight = 1

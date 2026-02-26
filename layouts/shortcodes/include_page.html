@@ -1,0 +1,6 @@
+{{- $p := .Get 0 -}}
+{{- with site.GetPage $p -}}
+  {{ .Content }}
+{{- else -}}
+  <p style="color:rgba(0,0,0,0.6)">未找到页面：{{ $p }}</p>
+{{- end -}}

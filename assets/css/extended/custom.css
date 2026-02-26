@@ -1,0 +1,1136 @@
+/* ==========================================================
+   采油采气工艺技术研究团队 · 全站自定义样式
+   基础色：中石大深蓝 #003366 / 金色点缀 #c8a951
+   所有视觉定制集中在此文件，extend_head.html 仅保留字体 <link>
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   一、全局 Design Token
+   ---------------------------------------------------------- */
+:root {
+  /* 颜色 */
+  --c-blue:   #003366;
+  --c-blue2:  #0a4f96;
+  --c-blue-l: #e8eef7;
+  --c-gold:   #c8a951;
+  --c-green:  #2e7d52;
+  --c-text:   #1a1a1a;
+  --c-muted:  #6b6b6b;
+  --c-border: rgba(0,0,0,0.08);
+  --c-bg:     #fafafa;
+  --c-white:  #ffffff;
+
+  /* 字号 — 4 档，覆盖全站所有 font-size */
+  --fs-xs:   0.78rem;   /* 极小：badge、年份标注   */
+  --fs-sm:   0.85rem;   /* 小：标签、meta、按钮    */
+  --fs-body: 0.93rem;   /* 正文：描述、列表        */
+  --fs-ui:   1.05rem;   /* UI大：所属院校、卡片标题 */
+
+  /* 圆角 */
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 14px;
+
+  /* 阴影 */
+  --shadow-s: 0 2px 8px rgba(0,51,102,0.08);
+  --shadow-m: 0 4px 18px rgba(0,51,102,0.13);
+
+  /* 动效 */
+  --transition: all 0.22s ease;
+
+  /* 成员卡片尺寸 */
+  --photoW: 260px;
+  --photoH: 346px;
+  --cardGap: 20px;
+  --cardPad: 24px;
+}
+
+
+/* ----------------------------------------------------------
+   二、全站字体（Google Fonts 外网加载；否则降级为系统字体）
+   ---------------------------------------------------------- */
+body, .nav, .logo, .post-content,
+h1, h2, h3, h4 {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+               'Helvetica Neue', Arial, sans-serif !important;
+}
+
+
+/* ----------------------------------------------------------
+   三、布局宽度
+   ---------------------------------------------------------- */
+/* 主内容区适度放宽，给卡片网格留空间 */
+.main {
+  max-width: min(900px, 100%) !important;
+}
+
+
+/* ----------------------------------------------------------
+   四、导航 & 头部
+   ---------------------------------------------------------- */
+.header {
+  border-bottom: 2px solid var(--c-blue) !important;
+  box-shadow: 0 1px 4px rgba(0,51,102,0.07);
+}
+
+.logo a,
+.logo span {
+  font-weight: 800 !important;
+  font-size: var(--fs-ui) !important;
+  color: var(--c-blue) !important;
+  letter-spacing: -0.2px;
+}
+
+.nav ul li a {
+  font-size: var(--fs-sm) !important;
+  font-weight: 500 !important;
+  transition: color 0.15s;
+}
+.nav ul li a:hover,
+#menu a.active {
+  color: var(--c-blue) !important;
+}
+
+/* ----------------------------------------------------------
+   导航：两行布局
+   第一行：课题组名（左）
+   第二行：主菜单（左）+ 外部链接（右）
+   ---------------------------------------------------------- */
+
+/* 隐藏主题原生 .nav（结构已完全自定义） */
+.header > .nav { display: none; }
+
+/* 共用宽度约束 */
+.header-top,
+.nav-inner {
+  max-width: calc(var(--nav-width) + var(--gap) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+/* ── 第一行 ── */
+.header-top {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+}
+
+/* Logo 文字加大、加粗，单行不折行 */
+.logo {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.logo a {
+  white-space: nowrap;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: var(--c-blue) !important;
+  letter-spacing: -0.2px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.logo svg { flex-shrink: 0; }
+
+.logo-switches {
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── 第二行 ── */
+.header-nav {
+  border-top: 1px solid var(--c-border);
+  border-bottom: 2px solid var(--c-blue);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+}
+
+/* 主菜单（左，占满剩余空间） */
+#menu {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+  gap: 0;
+}
+#menu li a {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  height: 36px;
+  font-size: var(--fs-sm) !important;
+  font-weight: 500;
+  color: var(--c-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+#menu li a:hover { color: var(--c-blue) !important; }
+#menu span.active {
+  color: var(--c-blue);
+  font-weight: 700;
+  border-bottom: 2px solid var(--c-blue);
+  padding-bottom: 2px;
+}
+
+/* 外部链接（右，不压缩，与菜单行等高对齐） */
+#menu-external {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--gap);
+  border-left: 1px solid var(--c-border);
+  flex-shrink: 0;
+  gap: var(--gap);
+  height: 36px;          /* 与菜单行等高 */
+}
+#menu-external a {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  font-size: var(--fs-sm) !important;
+  font-weight: 500;
+  color: var(--c-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+#menu-external a:hover { color: var(--c-blue) !important; }
+
+
+/* ----------------------------------------------------------
+   五、文章内容排版
+   ---------------------------------------------------------- */
+/* 文章 h2：蓝色左边条（不影响 .section-title） */
+.post-content h2:not(.section-title) {
+  border-left: 4px solid var(--c-blue);
+  padding-left: 12px;
+  color: var(--c-blue);
+}
+
+/* 文章 h3 */
+.post-content h3 {
+  color: var(--c-blue2);
+}
+
+/* 分割线淡蓝 */
+.post-content hr {
+  border-color: rgba(0,51,102,0.12);
+}
+
+/* 页脚上边线 */
+footer {
+  border-top: 1px solid var(--c-border);
+}
+
+
+/* ----------------------------------------------------------
+   六、通用工具类
+   ---------------------------------------------------------- */
+/* 页面区块标题：金色左边条 */
+.section-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--c-blue);
+  margin: 0 0 6px 0;
+  padding-left: 12px;
+  border-left: 4px solid var(--c-gold);
+  line-height: 1.3;
+}
+
+/* 区块副标题 */
+.section-sub {
+  color: var(--c-muted);
+  font-size: var(--fs-body);
+  margin: 0 0 24px 0;
+  padding-left: 16px;
+}
+
+/* 隐藏系统自动生成的页面标题 */
+body.list .main > header.page-header        { display: none !important; }
+.main .post-single .post-header             { display: none !important; }
+body:has(.hide-page-header) .main > header.page-header { display: none !important; }
+
+
+/* ----------------------------------------------------------
+   七、首页 Hero 区域
+   ---------------------------------------------------------- */
+.hero-section {
+  background:
+    linear-gradient(rgba(240,246,255,0.80), rgba(235,244,255,0.80)),
+    url('/images/hero-lift.png') center/cover no-repeat;
+  color: var(--c-heading);
+  border-radius: var(--radius-l);
+  padding: 48px 40px;
+  margin-bottom: 52px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 装饰气泡（浅色模式下隐藏） */
+.hero-section::before,
+.hero-section::after { display: none; }
+
+/* 移动端 padding 收窄 */
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 32px 20px;
+    margin-bottom: 36px;
+  }
+}
+
+.hero-en {
+  font-size: var(--fs-sm);
+  color: #3a5a8a;
+  letter-spacing: 0.5px;
+  margin: 4px 0 18px 0;
+  font-style: italic;
+}
+.hero-affil {
+  font-size: var(--fs-ui);
+  color: #3a5a8a;
+  margin-bottom: 20px;
+}
+.hero-desc {
+  max-width: 740px;
+  line-height: 1.85;
+  color: #1a2a3a;
+  font-size: var(--fs-body);
+  margin-bottom: 28px;
+}
+
+/* 统计数字 — 移动端 2×2 网格 */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: 14px;
+}
+@media (max-width: 600px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.hero-stat {
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(26,115,232,0.18);
+  border-radius: var(--radius-s);
+  padding: 10px 20px;
+  text-align: center;
+  min-width: 80px;
+  backdrop-filter: blur(4px);
+}
+.hero-stat-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0d3a7a;
+}
+.hero-stat-label {
+  font-size: var(--fs-xs);
+  color: #2a4060;
+  margin-top: 2px;
+}
+
+
+/* ----------------------------------------------------------
+   八、首页分区布局
+   ---------------------------------------------------------- */
+.home-section        { margin: 56px 0; }
+.home-section-header { margin-bottom: 24px; }
+
+
+/* ----------------------------------------------------------
+   九、研究方向卡片（首页 2×2 网格）
+   ---------------------------------------------------------- */
+.research-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  max-width: 900px;
+}
+@media (max-width: 600px) {
+  .research-grid { grid-template-columns: 1fr; }
+}
+
+.research-card {
+  padding: 22px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  border-top: 3px solid transparent;
+  background: var(--c-white);
+  text-decoration: none !important;
+  display: block;
+  box-shadow: var(--shadow-s);
+  transition: var(--transition);
+}
+.research-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-m);
+  border-top-color: var(--c-blue);
+  background: var(--c-blue-l);
+}
+.research-card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.research-card-title {
+  font-weight: 700;
+  font-size: var(--fs-ui);
+  color: var(--c-text);
+  margin-bottom: 6px;
+}
+.research-card:hover .research-card-title { color: var(--c-blue); }
+.research-card-desc {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  line-height: 1.55;
+}
+
+
+/* ----------------------------------------------------------
+   十、代表性成果卡片
+   ---------------------------------------------------------- */
+.pub-card {
+  background: var(--c-white);
+  padding: 20px 22px;
+  border-radius: var(--radius-m);
+  margin-bottom: 16px;
+  border: 1px solid var(--c-border);
+  /* 用 inset shadow 代替改变 border-left，避免 hover 时内容跳动 */
+  box-shadow: var(--shadow-s);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+.pub-card:hover {
+  box-shadow: inset 3px 0 0 var(--c-blue), var(--shadow-m);
+  transform: translateX(2px);
+}
+
+.pub-index {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--c-blue);
+  color: white;
+  border-radius: 50%;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.pub-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--c-text);
+  text-decoration: none;
+  line-height: 1.45;
+}
+.pub-title:hover { color: var(--c-blue); }
+
+.pub-meta {
+  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pub-journal-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  background: var(--c-blue);
+  color: white;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+.pub-year {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+}
+
+
+/* ----------------------------------------------------------
+   十一、最新资讯时间轴
+   ---------------------------------------------------------- */
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--c-border);
+}
+.news-item {
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--c-border);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.news-item:last-child { border-bottom: none; }
+
+/* 用 absolute 定位圆点，不依赖 magic margin */
+.news-dot {
+  position: absolute;
+  left: -25px;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  background: var(--c-blue);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.news-link {
+  text-decoration: none;
+  color: var(--c-text);
+  font-size: var(--fs-body);
+  flex: 1;
+  transition: color 0.15s;
+}
+.news-link:hover { color: var(--c-blue); }
+.news-date {
+  color: var(--c-muted);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+
+/* ----------------------------------------------------------
+   十二、通用按钮
+   ---------------------------------------------------------- */
+/* 实心主按钮（"查看全部…"） */
+.btn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 22px;
+  background: var(--c-blue);
+  color: white !important;
+  border-radius: var(--radius-s);
+  text-decoration: none !important;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: var(--transition);
+  /* 不写 margin：由外部布局控制间距 */
+}
+.btn-more:hover {
+  background: var(--c-blue2);
+  box-shadow: var(--shadow-m);
+  transform: translateY(-1px);
+}
+
+/* 文字链接式按钮（"查看全部资讯 →"） */
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--fs-sm);
+  color: var(--c-blue) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: gap 0.15s;
+}
+.btn-link:hover { gap: 8px; }
+
+
+/* ----------------------------------------------------------
+   十三、导师团队卡片
+   ---------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  gap: 20px;
+}
+/* 宽屏：双列 */
+@media (min-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(560px, 1fr));
+  }
+}
+/* 中屏（平板）：单列但图片适度缩小 */
+@media (min-width: 600px) and (max-width: 1023px) {
+  :root {
+    --photoW: 220px;
+    --photoH: 293px;
+  }
+  .team-grid { grid-template-columns: 1fr; }
+}
+/* 手机：单列，图片进一步缩小 */
+@media (max-width: 599px) {
+  :root {
+    --photoW: 180px;
+    --photoH: 240px;
+  }
+  .team-card {
+    grid-template-columns: 1fr;
+    justify-content: start;
+  }
+}
+
+.team-card {
+  background: var(--c-white);
+  padding: var(--cardPad);
+  border-radius: var(--radius-l);
+  border: 1px solid var(--c-border);
+  border-top: 3px solid transparent;
+  box-shadow: var(--shadow-s);
+  display: grid;
+  grid-template-columns: var(--photoW) var(--photoW);
+  gap: var(--cardGap);
+  align-items: start;
+  justify-content: center;
+  transition: var(--transition);
+}
+.team-card:hover {
+  box-shadow: var(--shadow-m);
+  border-top-color: var(--c-blue);
+  transform: translateY(-2px);
+}
+
+.team-photo { display: flex; justify-content: center; }
+.team-photo img {
+  width: var(--photoW);
+  height: var(--photoH);
+  object-fit: cover;
+  border-radius: var(--radius-m);
+  display: block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+
+.team-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--c-blue);
+  margin-bottom: 4px;
+}
+.team-title {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+  border-left: 3px solid var(--c-gold);
+  padding-left: 8px;
+}
+.team-desc {
+  font-size: var(--fs-body);
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.team-actions { margin-top: 8px; }
+.team-btn {
+  display: inline-block;
+  padding: 7px 18px;
+  background: var(--c-blue);
+  color: white !important;
+  border-radius: var(--radius-s);
+  text-decoration: none !important;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: var(--transition);
+}
+.team-btn:hover {
+  background: var(--c-blue2);
+  box-shadow: 0 3px 10px rgba(0,51,102,0.3);
+}
+
+
+/* ----------------------------------------------------------
+   十四、通用卡片（.card）
+   ---------------------------------------------------------- */
+.card {
+  background: var(--c-white);
+  padding: 20px 22px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow-s);
+}
+.card-title { font-size: var(--fs-ui); font-weight: 700; margin: 0 0 8px 0; }
+.card-desc  { font-size: var(--fs-body); line-height: 1.65; margin: 0 0 12px 0; }
+.card-actions { margin-top: 10px; }
+
+
+/* ----------------------------------------------------------
+   十五、在研项目页面 — 统计数字行
+   ---------------------------------------------------------- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 10px 0 26px 0;
+}
+@media (max-width: 600px) {
+  .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.stat-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-top: 3px solid var(--c-blue);
+  border-radius: var(--radius-m);
+  padding: 18px;
+  box-shadow: var(--shadow-s);
+  text-align: center;
+  transition: var(--transition);
+}
+.stat-card:hover { box-shadow: var(--shadow-m); transform: translateY(-2px); }
+.stat-num   { font-size: 1.75em; font-weight: 700; color: var(--c-blue); line-height: 1.2; }
+.stat-label { color: var(--c-muted); margin-top: 4px; font-size: var(--fs-sm); }
+
+
+/* ----------------------------------------------------------
+   十六、在研项目页面 — 快速筛选
+   ---------------------------------------------------------- */
+.quick-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 22px 0;
+}
+.qf-btn {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--c-white);
+  border: 1.5px solid var(--c-border);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  color: var(--c-text);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.qf-btn:hover,
+.qf-btn.qf-active {
+  background: var(--c-blue);
+  color: white !important;
+  border-color: var(--c-blue);
+  box-shadow: var(--shadow-s);
+}
+
+
+/* ----------------------------------------------------------
+   十七、在研项目页面 — 项目卡片
+   ---------------------------------------------------------- */
+.project-list { display: flex; flex-direction: column; gap: 14px; }
+
+.project-card {
+  background: var(--c-white);
+  padding: 20px 22px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--c-border);
+  /* inset shadow 实现左侧高亮，避免 border 宽度变化引起抖动 */
+  box-shadow: var(--shadow-s);
+  transition: var(--transition);
+}
+.project-card:hover {
+  box-shadow: inset 4px 0 0 var(--c-blue), var(--shadow-m);
+  transform: translateX(2px);
+}
+
+.project-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.project-head h4 { margin: 0; font-size: 1rem; }
+.project-head h4 a { color: var(--c-text); text-decoration: none; }
+.project-head h4 a:hover { color: var(--c-blue); }
+
+.muted { color: var(--c-muted); font-size: var(--fs-body); margin: 6px 0 0; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  margin-top: 10px;
+}
+
+
+/* ----------------------------------------------------------
+   十八、通用 Badge / Tag
+   ---------------------------------------------------------- */
+.badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  color: var(--c-muted);
+}
+
+/* 省部级 — 深蓝 */
+.badge-national {
+  background: var(--c-blue-l);
+  border-color: rgba(0,51,102,0.2);
+  color: var(--c-blue);
+  font-weight: 600;
+}
+
+/* 企业合作 — 中性灰蓝 */
+.badge-enterprise {
+  background: #f0f4f8;
+  border-color: #b0bec5;
+  color: #455a64;
+  font-weight: 500;
+}
+
+/* 在研状态 — 默认灰，靠 .badge 基础样式即可 */
+/* .badge-active 保持 .badge 默认外观，无需额外声明 */
+
+/* 开放招生 — 金色 */
+.badge-open {
+  background: #fff8e1;
+  border: 1px solid #f0c843;
+  color: #8a6c00;
+  font-weight: 700;
+}
+
+/* 学生参与 — 绿色 */
+.badge-stu {
+  background: #e8f4ef;
+  border: 1px solid #a3d0bc;
+  color: var(--c-green);
+  font-weight: 600;
+}
+
+.tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+/* 方向标签（研究方向胶囊） */
+.dir-tag {
+  display: inline-block;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: var(--c-blue-l);
+  border: 1px solid rgba(0,51,102,0.15);
+  color: var(--c-blue);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+
+/* ----------------------------------------------------------
+   十九、研究方向首页卡片（research-home layout）
+   ---------------------------------------------------------- */
+.research-home-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .research-home-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .research-home-grid { grid-template-columns: 1fr; }
+}
+
+.research-home-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-l);
+  background: var(--c-white);
+  box-shadow: var(--shadow-s);
+  transition: var(--transition);
+  overflow: hidden;
+}
+.research-home-card:hover {
+  box-shadow: var(--shadow-m);
+  transform: translateY(-4px);
+}
+.research-home-card:hover .rhc-img {
+  transform: scale(1.04);
+}
+
+/* 图片区 */
+.rhc-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #e8edf2;
+}
+.rhc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* 文字区 */
+.rhc-body {
+  padding: 22px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-top: 3px solid var(--c-blue);
+}
+.research-home-card:hover .rhc-body {
+  border-top-color: var(--c-gold);
+}
+.rhc-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.rhc-title {
+  margin: 0 0 8px 0;
+  font-size: 1.15rem;
+  color: var(--c-blue);
+}
+.rhc-title a { color: inherit; text-decoration: none; }
+.rhc-title a:hover { text-decoration: underline; }
+.rhc-desc {
+  color: var(--c-muted);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex: 1;
+}
+.rhc-more {
+  margin-top: auto;
+  font-size: 0.85rem;
+}
+
+
+/* ----------------------------------------------------------
+   二十、研究成果列表页
+   ---------------------------------------------------------- */
+.pub-list-wrap { margin-top: 10px; }
+.pub-list-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--c-border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.pub-list-item:last-child { border-bottom: none; }
+
+
+/* ----------------------------------------------------------
+   二十一、教学资源 — 视频嵌入
+   ---------------------------------------------------------- */
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 16px 0 8px 0;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  background: #000;
+  box-shadow: var(--shadow-m);
+}
+.video-embed::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 */
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.video-embed-lg { max-width: 1180px; }
+
+
+/* ----------------------------------------------------------
+   二十二、首页 Hero — 内部结构调整
+   ---------------------------------------------------------- */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-identity {
+  margin-bottom: 20px;
+}
+
+/* 所属院校标签行 */
+.hero-affil-tag {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.8px;
+  color: var(--c-blue);
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(26,115,232,0.25);
+  border-radius: var(--radius-s);
+  padding: 3px 12px;
+  margin-bottom: 14px;
+}
+
+/* 课题组主标题 */
+.hero-title {
+  margin: 0 0 6px 0;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--c-heading);
+  line-height: 1.25;
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 1.45rem; }
+}
+
+
+/* ----------------------------------------------------------
+   二十三、首页 — 导师团队预览（横排四人）
+   ---------------------------------------------------------- */
+.hp-teacher-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 860px) {
+  .hp-teacher-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .hp-teacher-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+.hp-teacher-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none !important;
+  padding: 20px 12px 16px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-l);
+  background: var(--c-white);
+  box-shadow: var(--shadow-s);
+  transition: var(--transition);
+  border-top: 3px solid transparent;
+}
+.hp-teacher-card:hover {
+  border-top-color: var(--c-blue);
+  box-shadow: var(--shadow-m);
+  transform: translateY(-3px);
+}
+
+/* 照片容器：用于承载 hover overlay */
+.hp-teacher-photo-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0,51,102,0.15);
+}
+@media (max-width: 480px) {
+  .hp-teacher-photo-wrap { width: 80px; height: 80px; }
+}
+
+.hp-teacher-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.hp-teacher-card:hover .hp-teacher-photo {
+  transform: scale(1.05);
+}
+
+/* hover 时出现的蒙层文字 */
+.hp-teacher-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,51,102,0.72);
+  color: white;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+.hp-teacher-card:hover .hp-teacher-overlay { opacity: 1; }
+
+/* 文字区 */
+.hp-teacher-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--c-blue);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.hp-teacher-title {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.hp-teacher-tag {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--c-blue-l);
+  color: var(--c-blue);
+  border: 1px solid rgba(0,51,102,0.15);
+  font-weight: 500;
+}
+
+
+/* ----------------------------------------------------------
+   二十四、首页底部 — 双栏布局（资讯 + 活动）
+   ---------------------------------------------------------- */
+.hp-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .hp-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.hp-col {
+  /* 每栏独立，无需额外样式 */
+}
